@@ -5,11 +5,13 @@ import Detail from "../../screens/Detail";
 import { Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Search from "../../screens/Search";
+import Purchase from "../../screens/Purchase";
 
 const Stack = createStackNavigator();
 
 export default () => {
   const navigation = useNavigation();
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -42,7 +44,7 @@ export default () => {
       />
       <Stack.Screen
         options={{
-          headerTitle: "",
+          headerTitle: "검색",
           headerBackTitleVisible: false,
           headerRight: () => (
             <Button
@@ -55,6 +57,7 @@ export default () => {
         name="Search"
         component={Search}
       />
+      <Stack.Screen name="Purchase" component={Purchase} />
     </Stack.Navigator>
   );
 };

@@ -9,10 +9,10 @@ import {
   Image,
   Text,
   Dimensions,
-  View,
   TouchableOpacity,
 } from "react-native";
 import RenderHTML from "react-native-render-html";
+import { useNavigation } from "@react-navigation/native";
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
@@ -58,11 +58,11 @@ const PurchaseBtn = styled.View`
 `;
 
 export default ({
-  navigation,
   route: {
     params: { prefix },
   },
 }) => {
+  const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
 
@@ -83,6 +83,8 @@ export default ({
   useEffect(() => {
     getData();
   }, []);
+
+  const onPress = () => navigation.navigate("Purchase", { data });
 
   const percent =
     data.originalPrice &&
@@ -134,11 +136,13 @@ export default ({
         </InfoWrapper>
         <ItemInfoWrapper>
           <Text>상품정보</Text>
-          <RenderHTML source={source} contentWidth={WIDTH} />
+          {data.description && (
+            <RenderHTML source={source} contentWidth={WIDTH} />
+          )}
         </ItemInfoWrapper>
       </ScrollView>
       <PurchaseWrapper>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
           <PurchaseBtn>
             <Text style={{ color: "white", fontSize: 15 }}>구매하기</Text>
           </PurchaseBtn>

@@ -1,12 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Image, SafeAreaView } from "react-native";
+import { Image } from "react-native";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import { Asset } from "expo-asset";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
-import Stack from "./components/navigation/stack";
+import Stack from "./components/navigation/Stack";
 
 const cacheImage = (images) =>
   images.map((image) => {

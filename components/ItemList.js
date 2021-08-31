@@ -7,7 +7,7 @@ import { trimText } from "../utils";
 const Container = styled.View`
   width: 50%;
   height: 200px;
-  margin-bottom: 150px;
+  margin-bottom: 70px;
   padding-right: 20px;
   padding-left: 20px;
 `;

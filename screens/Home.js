@@ -3,11 +3,6 @@ import { ActivityIndicator, Alert, FlatList } from "react-native";
 import axios from "axios";
 import ItemList from "../components/ItemList";
 import Categories from "../components/Categories";
-import styled from "styled-components/native";
-
-const Container = styled.View`
-  background-color: white;
-`;
 
 const renderItem = ({ item }) => (
   <ItemList
@@ -65,17 +60,19 @@ export default function Home() {
   };
 
   return (
-    <Container>
-      <Categories />
-      <FlatList
-        data={items}
-        renderItem={renderItem}
-        keyExtractor={(item) => String(item.prefix)}
-        numColumns={2}
-        ListFooterComponent={loading && <ActivityIndicator />}
-        onEndReached={onEndReached}
-        onEndReachedThreshold={0.8}
-      />
-    </Container>
+    <FlatList
+      data={items}
+      renderItem={renderItem}
+      keyExtractor={(item) => String(item.prefix)}
+      numColumns={2}
+      ListHeaderComponent={<Categories />}
+      ListHeaderComponentStyle={{ backgroundColor: "white" }}
+      stickyHeaderIndices={[0]}
+      ListFooterComponent={loading && <ActivityIndicator />}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.8}
+      nestedScrollEnabled={true}
+      style={{ backgroundColor: "white" }}
+    />
   );
 }
